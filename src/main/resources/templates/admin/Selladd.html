@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:insert="admin/header.html"></th:block>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-6">
+				<form action="/admin/Sell/add" method="post">
+				<p class="text-center" style="color: red; text-align: center;">[[${message}]]</p>
+					<div class="mb-3 mt-3">
+						<label for="sellname" class="form-label">Sell Name:</label> <input
+							type="text" class="form-control" placeholder="Enter Sell name"
+							name="sellname">
+					</div>
+					<div class="mb-3 mt-3">
+						<label for="sellname" class="form-label">Customer Name:</label> <input
+							type="text" class="form-control"
+							placeholder="Enter Customer name" name="custname">
+					</div>
+					<div class="mb-3">
+						<label for="inventory" class="form-label">Inventory:</label> <select
+							class="form-select" name="invid">
+							<option>Select</option>
+							<option th:each="i:${invlist}"  th:value="${i.invid}">[[${i.invname}]]</option>
+						</select>
+					</div>
+
+					<div class="mb-3 mt-3">
+						<label for="sellquan" class="form-label">Sell Quantity:</label> <input
+							type="number" class="form-control"
+							placeholder="Enter Sell Quantity" name="selquantity">
+					</div>
+					<div class="mb-3 mt-3">
+						<label for="sellamount" class="form-label">Sell Amount:</label> <input
+							type="number" class="form-control"
+							placeholder="Enter Sell Amount" name="sellamount">
+					</div>
+					
+
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+			<div class="col-3"></div>
+		</div>
+	</div>
+	<th:block th:insert="admin/footer.html"></th:block>
+
+</body>
+</html>

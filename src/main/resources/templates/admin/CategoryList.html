@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:insert="admin/header.html"></th:block>
+
+	<div class="container mt-3">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>S.no.</th>
+					<th>Category Name</th>
+					<th>Added Date</th>
+					<th>Image</th>
+					<th>Status</th>
+					<th>Action</th>
+					<th>Action</th>
+				</tr>
+				<tr th:each="d : ${catList}">
+					<td>[[${d.categoryid}]]</td>
+					<td>[[${d.categoryname}]]</td>
+					<td>[[${d.addeddate}]]</td>
+					<td><img th:src="@{'/images/' + ${d.photo}}" alt="cat Photo"
+						width="50" height="50"></td>
+					<td><span th:if="${d.status == 1}">Active</span> <span
+						th:if="${d.status == 0}">Inactive</span></td>
+					<td><a th:href="@{/admin/Category/edit(id=${d.categoryid})}"><input
+							type="submit" value="Edit" class="btn btn-success"></a></td>
+					<td><a th:href="@{/admin/Category/delete(id=${d.categoryid})}"
+						onclick="return confirm('Are you sure you want to delete?')"><input
+							type="submit" value="DELETE" class="btn btn-danger"></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<th:block th:insert="admin/footer.html"></th:block>
+</body>
+</html>
